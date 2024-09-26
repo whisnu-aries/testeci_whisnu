@@ -58,4 +58,93 @@ class StepController extends Controller
       'output' => $stars
     ]);
   }
+
+  private function renderFormattedNumber(int $number)
+  {
+    return number_format($number, 0, ',', '.');
+  }
+
+  private function renderTextNumber(int $number)
+  {
+    $words = [
+      '',
+      'satu',
+      'dua',
+      'tiga',
+      'empat',
+      'lima',
+      'enam',
+      'tujuh',
+      'delapan',
+      'sembilan',
+      'sepuluh',
+      'sebelas',
+      'dua belas',
+      'tiga belas',
+      'empat belas',
+      'lima belas',
+      'enam belas',
+      'tujuh belas',
+      'delapan belas',
+      'sembilan belas',
+    ];
+
+    $levels = [
+      '',
+      'ribu',
+      'juta',
+      'miliar',
+      'triliun',
+    ];
+
+    $number = number_format($number, 0, ',', '.');
+    $split = explode('.', $number);
+    $words_return = [];
+
+    $i_level = 0;
+    for ($i = count($split) - 1; $i >= 0; $i--) {
+      $hundreds = (int)($split[$i] / 100);
+      $tens = (int)(($split[$i] % 100) / 10);
+      $units = (int)($split[$i] % 10);
+
+      $str = '';
+      if ($hundreds == 1) {
+        $str .= ' seratus';
+      } elseif ($hundreds > 1) {
+        $str .= $words[$hundreds] . ' ratus';
+      }
+
+      if ($tens >= 2) {
+        $str .= ' ' . $words[$tens] . ' puluh';
+      } elseif ($tens == 1) {
+        $str .= ' ' . $words[$tens * 10 + $units];
+        $units = 0;
+      }
+
+      if ($units > 0) {
+        $str .= ' ' . $words[$units];
+      }
+
+
+      $str .= ' ' . $levels[$i_level] . ' ';
+      array_unshift($words_return, $str);
+      $i_level++;
+    }
+
+    return implode('', $words_return) . 'rupiah';
+  }
+
+  public function test2(Request $request)
+  {
+    $request->validate([
+      'number' => ['required', 'numeric']
+    ]);
+
+    $number = $request->input('number');
+
+    $response['formatted'] = 'Rp. ' . $this->renderFormattedNumber($number);
+    $response['textCurrency'] = $this->renderTextNumber($number);
+
+    return response()->json($response);
+  }
 }
