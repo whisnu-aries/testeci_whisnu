@@ -12,38 +12,50 @@ class StepController extends Controller
   {
     switch ($step) {
       case '0':
-        return Inertia::render('Step0', [
-          'step' => $step
-        ]);
-        break;
       case '1':
-        return Inertia::render('Step1', [
-          'step' => $step
-        ]);
-        break;
       case '2':
-        return Inertia::render('Step2', [
-          'step' => $step
-        ]);
-        break;
       case '3':
-        return Inertia::render('Step3', [
-          'step' => $step
-        ]);
-        break;
       case '4':
-        return Inertia::render('Step4', [
-          'step' => $step
-        ]);
-        break;
       case '5':
-        return Inertia::render('Step5', [
-          'step' => $step
-        ]);
+        return Inertia::render('Step' . $step);
         break;
       default:
         abort(Response::HTTP_NOT_FOUND);
+    }
+  }
+
+  private function renderStars(string $type, int $number)
+  {
+    switch ($type) {
+      case 'Type 1':
+        $stars = range(1, $number);
+        break;
+      case 'Type 2':
+        $stars = range($number, 1);
+        break;
+      default:
+        $stars = [];
         break;
     }
+
+    return array_map(fn($n) => str_repeat('*', $n), $stars);
+  }
+
+  public function test1(Request $request)
+  {
+    $request->validate([
+      'type' => ['required'],
+      'number' => ['nullable', 'numeric']
+    ]);
+
+    $type = $request->type;
+    $number = $request->input('number');
+
+    $stars = $this->renderStars($type, $number);
+
+    return Inertia::render('Step1', [
+      'type' => $type,
+      'output' => $stars
+    ]);
   }
 }
