@@ -48,7 +48,7 @@ defineProps(["step"]);
             href="https://github.com/whisnu-aries/testeci_whisnu"
             class="underline text-blue-700"
           >
-            testec_whisnu
+            testeci_whisnu
           </a>
         </div>
       </div>
