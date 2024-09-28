@@ -1,29 +1,3 @@
-<!-- <script setup>
-defineProps(["step"]);
-</script> -->
-
-<!-- <script>
-import Step_0_component from "./Step_0_component.vue";
-import Step_1_component from "./Step_1_component.vue";
-
-export default {
-  components: {
-    Step_0_component,
-    Step_1_component,
-  },
-  props: {
-    step: Number,
-  },
-  data() {
-    return {
-      steps: [
-        { id: 0, component: "Step_0_component" },
-        { id: 1, component: "Step_1_component" },
-      ],
-    };
-  },
-};
-</script> -->
 <script setup>
 defineProps(["step"]);
 </script>

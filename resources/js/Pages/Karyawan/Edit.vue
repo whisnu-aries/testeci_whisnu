@@ -1,83 +1,64 @@
-<script>
-import { useForm } from "@inertiajs/vue3";
+<script setup>
+import axios from "axios";
 import { reactive } from "vue";
 
-export default {
-  props: {
-    id: String,
-  },
-  setup(props) {
-    let data = reactive({
-      karyawan: {},
-      jabatan: [],
-      department: [],
-      errorMessage: "",
-    });
+import LayoutTest4 from "../../Layouts/LayoutTest4.vue";
 
-    const fetchData = async () => {
-      try {
-        const karyawanResponse = await axios.get(
-          `/api/test4/find_karyawan/${props.id}`
-        );
+defineOptions({ layout: LayoutTest4 });
 
-        data.karyawan = {
-          id_karyawan: karyawanResponse.data.id_karyawan,
-          nik: karyawanResponse.data.nik,
-          nama: karyawanResponse.data.nama,
-          ttl: karyawanResponse.data.ttl,
-          alamat: karyawanResponse.data.alamat,
-          id_jabatan: karyawanResponse.data.id_jabatan,
-          id_department: karyawanResponse.data.id_department,
-        };
+const props = defineProps({ id: String });
 
-        const jabatanResponse = await axios.get("/api/test4/all_jabatan");
-        data.jabatan = jabatanResponse.data;
+let data = reactive({
+  karyawan: {},
+  jabatan: {},
+  department: [],
+  errorMessage: "",
+});
 
-        const departmentResponse = await axios.get("/api/test4/all_department");
-        data.department = departmentResponse.data;
-      } catch (response) {
-        const errorData = response.data;
-        data.errorMessage = errorData.message;
-      }
-    };
+const fetchData = async () => {
+  try {
+    const karyawanResponse = await axios.get(
+      `/api/test4/find_karyawan/${props.id}`
+    );
+    data.karyawan = karyawanResponse.data;
 
-    const submitForm = () => {
-      console.log("submitted");
-      axios
-        .post("/api/test4/karyawan/update_karyawan", {
-          ...data.karyawan,
-        })
-        .then((response) => {
-          if (response.data.success) {
-            window.location.href = "/test4/karyawan";
-          } else {
-            data.karyawan.errors = {
-              nik: null,
-              nama: null,
-              ttl: null,
-              alamat: null,
-              id_jabatan: null,
-              id_department: null,
-            };
-            data.errorMessage = response.data.message;
-          }
-        })
-        .catch(({ response }) => {
-          const errorData = response.data;
-          data.errorMessage = errorData.message;
-          data.karyawan.errors = errorData.errors;
-        });
-    };
+    const jabatanResponse = await axios.get("/api/test4/all_jabatan");
+    data.jabatan = jabatanResponse.data;
 
-    fetchData();
-    return { data, submitForm };
-  },
+    const departmentResponse = await axios.get("/api/test4/all_department");
+    data.department = departmentResponse.data;
+  } catch (error) {
+    console.error(error);
+  }
 };
+
+const submitForm = () => {
+  axios
+    .post("/api/test4/update_karyawan", {
+      ...data.karyawan,
+    })
+    .then((response) => {
+      if (response.data.success) {
+        window.location.href = "/test4/karyawan";
+      } else {
+        data.errorMessage = response.data.message;
+      }
+    })
+    .catch(({ response }) => {
+      console.log(response);
+      const errorData = response.data;
+
+      data.errorMessage = errorData.message;
+      data.karyawan.errors = errorData.errors;
+    });
+};
+
+fetchData();
 </script>
 
 <template>
   <div class="flex flex-col h-full gap-4 pb-4">
-    <div class="h-full flex flex-col gap-4">
+    <div v-if="data.karyawan" class="h-full flex flex-col gap-4">
       <TitleText text="Edit Karyawan" />
       <div
         v-if="data.errorMessage"

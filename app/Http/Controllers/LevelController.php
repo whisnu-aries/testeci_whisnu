@@ -4,28 +4,28 @@ namespace App\Http\Controllers;
 
 use Inertia\Inertia;
 
-class KaryawanController extends Controller
+class LevelController extends Controller
 {
   public function index()
   {
-    return Inertia::render('Karyawan/List');
+    return Inertia::render('Level/List');
   }
 
   public function create()
   {
-    return Inertia::render('Karyawan/Insert');
+    return Inertia::render('Level/Insert');
   }
 
   public function show(string $id)
   {
-    return Inertia::render('Karyawan/Detail', [
+    return Inertia::render('Level/Detail', [
       'id' => $id,
     ]);
   }
 
   public function edit(string $id)
   {
-    return Inertia::render('Karyawan/Edit', [
+    return Inertia::render('Level/Edit', [
       'id' => $id,
     ]);
   }

@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
 import { reactive } from "vue";
 
 export default {
@@ -20,13 +20,37 @@ export default {
     return { data };
   },
 };
+</script> -->
+
+<script setup>
+import axios from "axios";
+import { reactive } from "vue";
+
+import LayoutTest4 from "../../Layouts/LayoutTest4.vue";
+
+defineOptions({ layout: LayoutTest4 });
+
+const props = defineProps({ id: String });
+
+const data = reactive({
+  karyawan: {},
+});
+
+const fetchData = async () => {
+  const karyawanResponse = await axios.get(
+    `/api/test4/find_karyawan/${props.id}`
+  );
+  data.karyawan = karyawanResponse.data;
+};
+
+fetchData();
 </script>
 
 <template>
   <div class="flex flex-col h-full gap-4 pb-4">
     <div class="h-full flex flex-col gap-4">
       <TitleText text="Detail Karyawan" />
-      <div class="flex flex-col gap-2">
+      <div v-if="data.karyawan" class="flex flex-col gap-2">
         <div class="flex justify-end">
           <Link
             :href="'/test4/karyawan/edit/' + data.karyawan.id_karyawan"
@@ -41,7 +65,7 @@ export default {
           </Link>
         </div>
 
-        <div v-if="data.karyawan">
+        <div>
           <div class="mb-4">
             <label
               for="nik"
@@ -85,7 +109,7 @@ export default {
             >
               Jabatan
             </label>
-            {{ data.karyawan.jabatan.nama_jabatan }}
+            {{ data.karyawan.jabatan && data.karyawan.jabatan.nama_jabatan }}
           </div>
           <div class="mb-4">
             <label
@@ -94,7 +118,7 @@ export default {
             >
               Department
             </label>
-            {{ data.karyawan.department.nama_dept }}
+            {{ data.karyawan.department && data.karyawan.department.nama_dept }}
           </div>
         </div>
       </div>
