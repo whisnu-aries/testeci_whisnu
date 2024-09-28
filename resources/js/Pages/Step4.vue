@@ -11,9 +11,10 @@ defineProps(["step"]);
       <TitleText text="Test 4!" />
       <div class="w-4/5 h-full flex flex-col items-center justify-center gap-4">
         <DescriptionText
-          text="Ini adalah website yang dibuat oleh Whisnu Aries Dewantara untuk test full stack web developer yang diadakan oleh PT. Electronic City Indonesia, Tbk."
+          text="Untuk step 4 ini anda bisa mengakses ke link berikut ini."
           class="text-center"
         />
+        <a href="/test4/karyawan" class="underline text-blue-700"> test 4 </a>
       </div>
     </div>
     <div class="flex justify-end">
