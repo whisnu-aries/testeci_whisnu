@@ -28,17 +28,31 @@ class StepController extends Controller
   {
     switch ($type) {
       case 'Type 1':
-        $stars = range(1, $number);
+        $array = range(1, $number);
+        $stars = array_map(fn($n) => str_repeat('*', $n), $array);
         break;
       case 'Type 2':
-        $stars = range($number, 1);
+        $array = range($number, 1);
+        $stars = array_map(fn($n) => str_repeat('*', $n), $array);
+        break;
+      case 'Type 3':
+        for ($i = 1; $i <= $number; $i++) {
+          $text = '';
+          for ($j = 1; $j <= $number - $i; $j++) {
+            $text .= "&nbsp;";
+          }
+          for ($k = 1; $k <= $i; $k++) {
+            $text .= "*";
+          }
+          $stars[] = $text;
+        }
         break;
       default:
         $stars = [];
         break;
     }
 
-    return array_map(fn($n) => str_repeat('*', $n), $stars);
+    return $stars;
   }
 
   public function test1(Request $request)

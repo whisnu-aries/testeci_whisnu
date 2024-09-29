@@ -1,5 +1,6 @@
 <script setup>
 import { useForm } from "@inertiajs/vue3";
+
 defineProps({ output: Object });
 
 const form = useForm({
@@ -57,14 +58,17 @@ const submit = () => {
               Submit
             </button>
           </div>
-           
         </form>
         <div class="">
           <p class="block text-sm font-medium leading-6 text-gray-900">
             Output:
           </p>
           <ul>
-            <li v-for="item in output" :key="item">{{ item }}</li>
+            <li
+              v-for="item in output"
+              :key="item"
+              v-html="item.replace(/&nbsp;/g, ' ')"
+            ></li>
           </ul>
         </div>
       </div>
