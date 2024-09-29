@@ -6,10 +6,11 @@ use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\StepController;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+  return view('welcome');
 });
 
 Route::get('/step/{parameter}', [StepController::class, 'index']);
@@ -17,9 +18,25 @@ Route::post('/step/1', [StepController::class, 'test1']);
 Route::post('/step/2', [StepController::class, 'test2']);
 
 Route::get('/test3/download', function () {
-    $file = public_path('test_3.sql');
+  $file = public_path('test_3.sql');
 
-    return response()->download($file);
+  return response()->download($file);
+});
+Route::get('/test3/run', function () {
+  $sql = file_get_contents(public_path('test_3.sql'));
+  $statements = explode(';', $sql);
+
+  foreach ($statements as $statement) {
+    $statement = trim($statement);
+    if (!empty($statement)) {
+      DB::statement($statement);
+    }
+  }
+  // $sql = file_get_contents(public_path('test_3.sql'));
+  // DB::statement($sql);
+  // $file = public_path('test_3.sql');
+
+  // return response()->download($file);
 });
 
 Route::get('/test4/karyawan', [KaryawanController::class, 'index']);

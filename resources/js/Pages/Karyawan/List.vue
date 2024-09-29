@@ -39,9 +39,14 @@ fetchData();
   <div class="flex flex-col h-full gap-4 pb-4">
     <div class="h-full flex flex-col gap-4">
       <TitleText text="Karyawan" />
-      <Link href="karyawan/create" class="flex justify-end">
-        <PrimaryButton>Tambah karyawan</PrimaryButton>
-      </Link>
+      <div class="flex justify-end gap-4">
+        <Link href="/test3/run">
+          <PrimaryButton>run test_3.sql</PrimaryButton>
+        </Link>
+        <Link href="karyawan/create">
+          <PrimaryButton>Tambah karyawan</PrimaryButton>
+        </Link>
+      </div>
       <table class="table-auto border-collapse w-full">
         <thead>
           <tr class="text-left">

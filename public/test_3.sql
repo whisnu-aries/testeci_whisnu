@@ -29,7 +29,7 @@ INSERT INTO karyawan (nik, nama, ttl, alamat, id_jabatan, id_department)
 VALUES
   ('K001', 'Whisnu', '1990-01-01', 'Jl. Utama 123', 1, 3),
   ('K002', 'Aries', '1991-05-15', 'Jl. Pelangi 456', 2, 1),
-  ('K003', 'Dewantara', '1980-09-20', 'Jl. Sejahtera 789', 3, 2)
+  ('K003', 'Dewantara', '1980-09-20', 'Jl. Sejahtera 789', 3, 2);
 
 INSERT INTO jabatan (nama_jabatan, id_level)
 VALUES
