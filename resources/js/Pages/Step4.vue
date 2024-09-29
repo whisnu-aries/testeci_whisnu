@@ -7,6 +7,10 @@
       <TitleText text="Test 4!" />
       <div class="w-4/5 h-full flex flex-col items-center justify-center gap-4">
         <DescriptionText
+          text="Membuat dashboard simple untuk mengolah data Karyawan, Jabatan, Level, dan Department"
+          class="text-center"
+        />
+        <DescriptionText
           text="Untuk step 4 ini anda bisa mengakses ke link berikut ini."
           class="text-center"
         />

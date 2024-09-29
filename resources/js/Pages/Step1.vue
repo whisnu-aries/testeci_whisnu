@@ -27,7 +27,7 @@ const submit = () => {
               for="type"
               class="block text-sm font-medium leading-6 text-gray-900"
             >
-              Buatkan API untuk case berikut
+              Type output
             </label>
             <div class="mt-2">
               <select
@@ -44,6 +44,12 @@ const submit = () => {
             </div>
           </div>
           <div class="mb-4">
+            <label
+              for="number"
+              class="block text-sm font-medium leading-6 text-gray-900"
+            >
+              Jumlah baris
+            </label>
             <input
               type="number"
               name="number"
@@ -61,6 +67,20 @@ const submit = () => {
               Submit
             </button>
           </div>
+          <hr class="my-2" />
+          <p>
+            Menampilkan pola bintang (*) berdasarkan tipe pola dan jumlah baris
+            yang ditentukan oleh pengguna.
+          </p>
+          <br />
+          <ul>
+            <li>1. Pilih jenis pola output bintang yang ingin ditampilkan.</li>
+            <li>
+              2. Masukkan jumlah baris yang diinginkan untuk pola bintang
+              tersebut.
+            </li>
+            <li>3. Jumlah baris harus berupa angka.</li>
+          </ul>
         </form>
         <div class="">
           <p class="block text-sm font-medium leading-6 text-gray-900">

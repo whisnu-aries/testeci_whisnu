@@ -8,19 +8,17 @@
       <div class="w-4/5 h-full flex flex-col items-center justify-center gap-4">
         <Description-text
           class="text-center"
-          text="Untuk jawaban dari test ini ada di file test_3.sql yang terletak didalam folder public/test_3.sql."
+          text="File jabawan dari test ini terletak di dalam folder public/test_3.sql"
         />
 
         <div class="flex items-center gap-1">
-          <Description-text
-            text="Anda juga bisa langsung mengunduh jawabannya disini."
-          />
+          <Description-text text="File dapat di download dengan cara klik " />
           <a
             href="/test3/download"
             target="_blank"
             class="underline text-blue-700"
           >
-            test_3.sql
+            link ini
           </a>
         </div>
       </div>

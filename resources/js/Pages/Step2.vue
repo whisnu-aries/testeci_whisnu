@@ -65,6 +65,20 @@ const submit = () => {
               Submit
             </button>
           </div>
+          <hr class="my-2" />
+          <p>
+            Mengubah angka yang ditentukan oleh user kedalam format berikut:
+            <ul>
+              <li>- Format uang (Rupiah) dengan tanda "Rp." dan pemisah ribuan.</li>
+              <li>- Format teks terbilang yang menuliskan angka tersebut dalam bahasa
+            Indonesia, diakhiri dengan kata "rupiah".</li>
+            </ul>
+          </p>
+          <br />
+          <ul>
+            <li>1. Masukan angka yang akan diformat.</li>
+            <li>2. Jumlah baris harus berupa angka.</li>
+          </ul>
         </form>
         <div>
           <p class="block text-sm font-medium leading-6 text-gray-900">

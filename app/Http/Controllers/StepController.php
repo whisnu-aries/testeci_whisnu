@@ -3,24 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Inertia\Inertia;
 
 class StepController extends Controller
 {
   public function index(int $step = 0)
   {
-    switch ($step) {
-      case '0':
-      case '1':
-      case '2':
-      case '3':
-      case '4':
-      case '5':
-        return Inertia::render('Step' . $step);
-        break;
-      default:
-        abort(Response::HTTP_NOT_FOUND);
+    if ($step >= 0 && $step <= 5) {
+      return Inertia::render('Step' . $step);
+    } else {
+      return Inertia::render('Step0');
     }
   }
 
