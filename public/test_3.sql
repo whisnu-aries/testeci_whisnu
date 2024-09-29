@@ -1,4 +1,3 @@
-1. buatkan table berdasarkan ketentuan:
 CREATE TABLE karyawan (
   id_karyawan INT AUTO_INCREMENT PRIMARY KEY,
   nik VARCHAR(10) UNIQUE,
@@ -6,7 +5,7 @@ CREATE TABLE karyawan (
   ttl DATE,
   alamat TEXT,
   id_jabatan INT,
-  id_department INT,
+  id_department INT
 );
 
 CREATE TABLE jabatan (
@@ -26,7 +25,6 @@ CREATE TABLE department (
 );
 
 
-2. masukan data ke table.
 INSERT INTO karyawan (nik, nama, ttl, alamat, id_jabatan, id_department)
 VALUES
   ('K001', 'Whisnu', '1990-01-01', 'Jl. Utama 123', 1, 3),
@@ -51,7 +49,6 @@ VALUES
   ('Marketing'),
   ('IT');
 
-3. menampilkan data
 SELECT
     a.nama AS nama_karyawan,
     b.nama_jabatan,
@@ -63,7 +60,6 @@ INNER JOIN jabatan b ON a.id_jabatan = b.id_jabatan
 INNER JOIN level c ON b.id_level = c.id_level
 INNER JOIN department d ON a.id_department = d.id_department;
 
-4. mengubah data
 UPDATE karyawan
 SET
     nama = 'Superman',
@@ -71,6 +67,5 @@ SET
 WHERE
     id_karyawan = 3;
 
-5. menghapus karywan
 DELETE FROM karyawan
 WHERE id_karyawan = 2;

@@ -1,22 +1,25 @@
-<script setup>
-defineProps(["step"]);
-</script>
-
 <template>
-  <Head>
-    <title>step {{ step }} page</title>
-  </Head>
   <div class="flex flex-col h-full gap-4 pb-4">
-    <div class="h-full flex flex-col items-center">
-      <TitleText text="Test 3!" />
-      <div class="w-4/5 h-full flex flex-col items-center justify-center gap-4">
-        <DescriptionText
-          text="Ini adalah website yang dibuat oleh Whisnu Aries Dewantara untuk test full stack web developer yang diadakan oleh PT. Electronic City Indonesia, Tbk."
-          class="text-center"
+    <div class="h-full flex flex-col gap-4">
+      <TitleText text="Test 3" />
+      <Description-text
+        text="Untuk jawaban dari test ini ada di file test_3.sql yang terletak didalam folder public/test_3.sql."
+      />
+
+      <div class="flex items-center gap-1">
+        <Description-text
+          text="Anda juga bisa langsung mengunduh jawabannya disini."
         />
+        <a
+          href="/test3/download"
+          target="_blank"
+          class="underline text-blue-700"
+        >
+          test_3.sql
+        </a>
       </div>
     </div>
-    <div class="flex justify-end">
+    <div class="flex justify-between">
       <Link href="2">
         <PrimaryButton>Sebelumnya</PrimaryButton>
       </Link>
