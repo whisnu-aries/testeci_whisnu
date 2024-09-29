@@ -31,6 +31,9 @@ const submit = () => {
 </script>
 
 <template>
+  <Head>
+    <title>Fullstack_whisnu</title>
+  </Head>
   <div class="flex flex-col h-full gap-4 pb-4">
     <div class="h-full flex flex-col gap-4">
       <TitleText text="Test 2" />
